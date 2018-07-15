@@ -4,10 +4,10 @@
 
 <script>
 export default {
-    name: 'poll',
+    name: 'poll-creator',
     data() {
         return {
-            message: 'Poll made by Gabi Stanciu'
+            message: 'PollCreator.vue made by Gabi Stanciu'
         };
     },
 };
