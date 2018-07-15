@@ -1,4 +1,4 @@
-import Poll from './Poll';
+import Poll from './Poll.vue';
 
 export default {
   install: (Vue, options) => {
