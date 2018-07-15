@@ -1,6 +1,6 @@
 {
   "name": "vue2-poll",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Vuejs component. Create polls. Vote. Edit.",
   "main": "index.js",
   "scripts": {
@@ -19,5 +19,6 @@
   "bugs": {
     "url": "https://github.com/gabistanciu/vue2-poll/issues"
   },
-  "homepage": "https://github.com/gabistanciu/vue2-poll#readme"
+  "homepage": "https://github.com/gabistanciu/vue2-poll#readme",
+  "dependencies": {}
 }
