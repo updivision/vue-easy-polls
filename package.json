@@ -1,0 +1,23 @@
+{
+  "name": "vue2-poll",
+  "version": "1.0.0",
+  "description": "A Vuejs component. Create polls. Vote. Edit.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabistanciu/vue2-poll.git"
+  },
+  "keywords": [
+    "poll",
+    "vote"
+  ],
+  "author": "Gabi Stanciu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gabistanciu/vue2-poll/issues"
+  },
+  "homepage": "https://github.com/gabistanciu/vue2-poll#readme"
+}
