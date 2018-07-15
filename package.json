@@ -1,18 +1,23 @@
 {
   "name": "vue2-poll",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A Vuejs component. Create polls. Vote. Edit.",
-  "main": "index.js",
+  "main": "dist/vue2-poll.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rimraf ./dist && webpack --config ./webpack.config.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gabistanciu/vue2-poll.git"
   },
   "keywords": [
+    "vue.js",
+    "vue2-poll.js",
+    "vue",
+    "votes",
+    "vote",
     "poll",
-    "vote"
+    "opinion polling"
   ],
   "author": "Gabi Stanciu",
   "license": "MIT",
@@ -20,5 +25,22 @@
     "url": "https://github.com/gabistanciu/vue2-poll/issues"
   },
   "homepage": "https://github.com/gabistanciu/vue2-poll#readme",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-runtime": "^6.9.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-2": "^6.11.0",
+    "babel-runtime": "^6.9.2",
+    "css-loader": "^0.28.11",
+    "rimraf": "^2.6.1",
+    "vue": "^2.5.16",
+    "vue-html-loader": "^1.2.3",
+    "vue-loader": "^11.1.4",
+    "vue-style-loader": "^2.0.3",
+    "vue-template-compiler": "^2.2.1",
+    "webpack": "1.13.1",
+    "webpack-merge": "^4.1.0"
+  }
 }
