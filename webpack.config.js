@@ -45,17 +45,8 @@ module.exports = [
     entry: path.resolve(__dirname + '/src/index.js'),
     output: {
       filename: 'vue2-poll.min.js',
-      libraryTarget: 'window',
-      library: 'VuePoll',
-    }
-  }),
-  merge(config, {
-    entry: path.resolve(__dirname + '/src/Poll.vue'),
-    output: {
-      filename: 'vue2-poll.js',
       libraryTarget: 'umd',
-      library: 'vue2-poll',
-      umdNamedDefine: true
+      library: 'Vue2Poll',
     }
   })
 ];

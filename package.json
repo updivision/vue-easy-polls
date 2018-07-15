@@ -1,8 +1,8 @@
 {
   "name": "vue2-poll",
-  "version": "1.0.4",
+  "version": "1.0.11",
   "description": "A Vuejs component. Create polls. Vote. Edit.",
-  "main": "dist/vue2-poll.main.js",
+  "main": "dist/vue2-poll.min.js",
   "scripts": {
     "build": "rimraf ./dist && webpack --config ./webpack.config.js"
   },

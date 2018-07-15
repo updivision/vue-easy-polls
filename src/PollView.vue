@@ -4,7 +4,7 @@
 
 <script>
 export default {
-    name: 'poll',
+    name: 'poll-view',
     data() {
         return {
             message: 'Poll made by Gabi Stanciu'

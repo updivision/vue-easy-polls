@@ -1,9 +1,15 @@
-import Poll from './Poll.vue';
+import PollView from './PollView.vue';
 import PollCreator from './PollCreator.vue'
 
-export default {
-  install: (Vue, options) => {
-    Vue.component('poll', Poll);
-    Vue.component('poll-creator', PollCreator);
-  }
-};
+const Poll = {
+  PollView,
+  PollCreator
+}
+
+export default Poll 
+
+export {
+  Poll,
+  PollView,
+  PollCreator
+}
