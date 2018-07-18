@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="dist/vue2-poll.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <poll-creator></poll-creator>
+        <hr>
+        <poll-view></poll-view>
+    </div>
+    <script>
+
+    Vue.use(Vue2Poll);
+    
+    new Vue({
+        el: '#app',
+        data: function() {
+            return {
+                message: 'asds'
+            };
+        },
+    })
+    </script>
+</body>
+</html>

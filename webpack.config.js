@@ -45,7 +45,7 @@ module.exports = [
     entry: path.resolve(__dirname + '/src/index.js'),
     output: {
       filename: 'vue2-poll.min.js',
-      libraryTarget: 'umd',
+      libraryTarget: 'window',
       library: 'Vue2Poll',
     }
   })
