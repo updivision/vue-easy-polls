@@ -24,6 +24,11 @@ var config = {
       }
     ]
   },
+  vue: {
+    loaders: {
+      scss: 'style!css!sass'
+    }
+  },
   externals: {
     moment: 'moment'
   },
