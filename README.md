@@ -1,46 +1,125 @@
-# vue2-poll
+# Vue2-poll
 
-> A Vuejs component for voting. Create polls, vote.
+> A Vuejs component for voting. Create polls -> Vote.
 
 ### Demo
 See live demo [here]().
 
-### Install
+## Prerequisites
+- [Vue.js 2](https://vuejs.org/)
 
-``` bash
-npm install --save vue2-poll
+## Installing
+
+Using npm:
+
+```bash
+$ npm install vue2-poll
 ```
-#### ES6
-```javascript
-    import Poll from 'vue2-poll'
 
-    export default {
-        ...
-        components: {
-            Poll
+Using cdn:
+
+```html
+<!-- TODO -->
+<script src="something"></script>
+```
+
+### Example (NPM)
+
+Define `vue2-poll` component markup inside your custom component:
+
+```html
+<template>
+    <div>
+        <vue-poll v-bind="options" @addvote="addVote"/>
+    </div>
+</template>
+
+<script> 
+    
+    import Vue2Poll from 'vue2-poll'
+    
+    export default {        
+        data() {
+            return {
+                poll: {
+                    question: "What is your favourite <strong>PHP</strong> framework?",
+                    answers: [
+                        {id: 1, answer: "Laravel", votes: 34021, voted: false},
+                        {id: 2, answer: "Symfony", votes: 3210, voted: false},
+                        {id: 3, answer: "Phalcon", votes: 321, voted: false},
+                        {id: 4, answer: "FuelPhp", votes: 200, voted: false},
+                        {id: 5, answer: "Zend Framework", votes: 31, voted: false},
+                        {id: 6, answer: "PHPixie", votes: 21, voted: false},
+                        {id: 7, answer: "CakePHP", votes: 12, voted: false}
+                    ],
+                    options: {
+                        multipleVotes: false   
+                    }
+                }
+            }
         },
-        ...
+        components: {
+            Vue2Poll
+        }
     }
+</script>
 ```
+
+### Example (CDN)
+
+```html
+<body>
+    <div id="app">
+        <vue2-poll/>
+    </div>
+
+    <script src="something"></script>
+    <script> 
+
+        Vue.use(Vue2Poll);
+
+        new Vue({
+            el: '#app'
+            data: function() {
+                return {
+                    poll: {
+                        question: "What is your favourite <strong>PHP</strong> framework?",
+                        answers: [
+                            {id: 1, answer: "Laravel", votes: 34021, voted: false},
+                            {id: 2, answer: "Symfony", votes: 3210, voted: false},
+                            {id: 3, answer: "Phalcon", votes: 321, voted: false},
+                            {id: 4, answer: "FuelPhp", votes: 200, voted: false},
+                            {id: 5, answer: "Zend Framework", votes: 31, voted: false},
+                            {id: 6, answer: "PHPixie", votes: 21, voted: false},
+                            {id: 7, answer: "CakePHP", votes: 12, voted: false}
+                        ],
+                        options: {
+                            multipleVotes: false   
+                        }
+                    }
+                }
+            },
+            methods: {
+            }
+        });
+    </script>
+</body>
+```
+
 ### Props
+#### PollCreate.vue
 
-| test | test | test | test
-| ---  |:----:| ----:| ---:
-| test | test | test |  -
+| Attribute | Description | Accepted values | Required | Default |
+| --------- | ----------- | --------------- | -------- | ------- |
+| savePollUrl | This is the endpoint where your server will save the current poll | URL (string) | required | - |
 
-#### postURL
-Set your POST url in the postURL prop.
+#### PollView.vue
 
-#### JSON Responses
+| Attribute | Description | Accepted values | Required | Default |
+| --------- | ----------- | --------------- | -------- | ------- |
+| saveVoteUrl | This is the endpoint where your server will save the vote for the current poll | URL (string) | required | - |
+| getPollUrl | This is the endpoint from where your server will return the poll | URL (string) | required | - |
 
-### Dependencies
-something
-
-### CSS
-CSS style is not scoped so it's easy for you to overwrite your own style.
-Bootstrap CSS is used in demo but not required for the component.
-
-### Example
 
 ### LICENSE
 
