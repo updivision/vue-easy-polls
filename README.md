@@ -7,6 +7,7 @@ See live demo [here]().
 
 ## Prerequisites
 - [Vue.js 2](https://vuejs.org/)
+- [Axios](https://github.com/axios/axios)
 
 ## Installing
 

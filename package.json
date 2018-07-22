@@ -25,7 +25,9 @@
     "url": "https://github.com/gabistanciu/vue2-poll/issues"
   },
   "homepage": "https://github.com/gabistanciu/vue2-poll#readme",
-  "dependencies": {},
+  "dependencies": {
+    "axios": "^0.18.0"
+  },
   "devDependencies": {
     "babel-core": "^6.10.4",
     "babel-loader": "^6.2.4",

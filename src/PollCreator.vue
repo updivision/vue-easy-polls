@@ -15,24 +15,29 @@
             </div>
         </div>
         <div class="poll-view__options">
-            <label class="w3checkbox">Allow multiple votes
-                <input v-model="poll.options.multipleVotes" type="checkbox" checked="checked">
+            <label class="checkbox">Allow multiple votes
+                <input v-model="poll.multipleVotes" type="checkbox" checked="checked">
                 <span class="checkmark"></span>
             </label>
         </div>
-        <div class="poll-view__create">
+        <div class="poll-view__submit">
             <button @click="createPoll">Create</button>
+        </div>
+        <div class="poll-view__info" :class="{'success' : success === true, 'error' : success === false}" v-if="success !== null">
+            <div v-if="success === true">Created</div>
+            <div v-if="success === false">Error</div>
         </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-    name: "poll-view",
+    name: "poll-creator",
     props: {
-        previw: {
-            type: Boolean,
-            default: true
+        savePollUrl: {
+            type: String
         }
     },
     data() {
@@ -45,10 +50,11 @@ export default {
                     { answer: "31-40" },
                     { answer: "" }
                 ],
-                options: {
-                    multipleVotes: false
-                }
-            }
+                multipleVotes: false
+            },
+            isValid: false,
+            success: null,
+            dev: true
         };
     },
     mounted () {
@@ -59,7 +65,7 @@ export default {
     methods: {
         createNewInput(index) {
             if (this.poll.answers.length - 1 == index) {
-                this.poll.answers.push({ answers: "" });
+                this.poll.answers.push({ answer: "" });
             }
         },
         deleteInput(index) {
@@ -68,178 +74,64 @@ export default {
             }
         },
         createPoll() {
-            
+            this.validate();
+
+            // Develop only -----TO REMOVE--------------
+            if (this.dev && this.isValid) {
+                this.alert(true)
+                setTimeout(() => {this.resetPoll()}, 1500)
+            // --------------------------------
+            } else if (this.dev && !this.isValid) {
+                this.alert(false)
+                setTimeout(() => {this.resetPoll()}, 1500)
+            } else {
+                if (this.isValid) {
+                    axios.post(this.savePollUrl, {
+                        poll: this.poll
+                    })
+                    .then((response) => {
+                        this.alert(true)
+                        setTimeout(() => {this.resetPoll()}, 1500)
+                    })
+                    .catch((error) => {
+                        this.alert(false)
+                    });
+                } else {
+                    this.alert(false)
+                }
+            }
+        },
+        resetPoll() {
+            this.poll.multipleVotes = false;
+            this.poll.answers = [];
+            this.poll.answers.push({answer: ""})
+            this.poll.answers.push({answer: ""})
+            this.poll.answers.push({answer: ""})
+            this.poll.answers.push({answer: ""})
+            this.poll.question = ""
+            this.isValid = false
+        },
+        validate () {
+            this.poll.answers = this.poll.answers.filter((answer) => {
+                if (answer.answer.length > 0) {
+                    return answer;
+                }
+            });
+            var count = this.poll.answers.length
+            if (count > 1) {
+                this.isValid = true;
+            } else  {
+                this.isValid = false;
+            }
+        },
+        alert(success) {
+            this.success = success
+            setTimeout(() => {this.success = null}, 3000)
         }
     }
 };
 </script>
 
 <style lang="scss">
-$primary: #90ee90;
-// $primary: #a390ee;
-
-@keyframes popup {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes popdown {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-    }
-}
-.poll-view {
-    font-family: Arial, Helvetica, sans-serif;
-    border-top: 6px solid $primary;
-    max-width: 500px;
-    margin: auto;
-    background-color: #fff;
-    &__title {
-        text-align: center;
-        font-size: 32px;
-        font-weight: 900;
-    }
-    &__inner {
-        padding: 16px;
-    }
-    &__question {
-        padding-bottom: 15px;
-        input {
-            box-sizing: border-box;
-            background-color: transparent;
-            width: 100%;
-            color: #333;
-            border: 2px solid #4e4c4b8f;
-            border-radius: 0px;
-            padding: 5px 40px 5px 10px;
-            line-height: 30px;
-            font-size: 30px;
-            transition: border 0.2s ease-in-out;
-            &:focus {
-                outline: none;
-                border: 2px solid #11a545b8;
-            }
-        }
-    }
-    &__answers {
-        .answer {
-            animation-name: popup;
-            animation-duration: 1s;
-            padding-bottom: 5px;
-            display: block;
-            position: relative;
-            background-color: #fff;
-            &.hide {
-                animation-name: popdown;
-                animation-duration: 1s;
-            }
-            .delete {
-                position: absolute;
-                bottom: 10px;
-                right: 0;
-                background-color: #fff;
-                color: #ff0f00;
-                font-weight: 500;
-                line-height: 14px;
-                font-size: 14px;
-                &:hover {
-                    cursor: pointer;
-                }
-            }
-            input {
-                box-sizing: border-box;
-                background-color: transparent;
-                width: 100%;
-                color: #333;
-                border: none;
-                border-bottom: 1px solid #4e4c4b8f;
-                border-radius: 0px;
-                padding: 5px 40px 5px 10px;
-                line-height: 24px;
-                font-size: 24px;
-                transition: border 0.2s ease-in-out;
-                &:focus {
-                    outline: none;
-                    border-bottom: 3px solid $primary;
-                }
-            }
-        }
-    }
-    &__options {
-        padding: 16px;
-        .w3checkbox {
-            display: block;
-            position: relative;
-            padding-left: 35px;
-            margin-bottom: 12px;
-            cursor: pointer;
-            font-size: 22px;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            input {
-                position: absolute;
-                opacity: 0;
-                cursor: pointer;
-            }
-            .checkmark {
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 25px;
-                width: 25px;
-                background-color: #eee;
-                &:after {
-                    content: "";
-                    position: absolute;
-                    display: none;
-                    left: 9px;
-                    top: 5px;
-                    width: 5px;
-                    height: 10px;
-                    border: solid white;
-                    border-width: 0 3px 3px 0;
-                    -webkit-transform: rotate(45deg);
-                    -ms-transform: rotate(45deg);
-                    transform: rotate(45deg);
-                }
-            }
-            &:hover {
-                input ~ .checkmark {
-                    background-color: #ccc;
-                }
-            }
-            input:checked ~ .checkmark {
-                background-color: $primary;
-                &:after {
-                    display: block;
-                }
-            }
-        }
-    }
-    &__create {
-        text-align: center;
-        padding: 16px;
-        button {
-            color: #fff;
-            background-color: $primary;
-            border: 1px solid lighten($primary, 15%);
-            padding: 10px 16px;
-            font-size: 30px;
-            transition: background-color 0.2s ease-in-out;
-            &:hover {
-                cursor: pointer;
-                background-color: darken($primary, 15%);
-            }
-        }
-    }
-}
+@import "./poll.scss";
 </style>

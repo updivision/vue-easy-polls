@@ -1,54 +1,116 @@
 <template>
     <div class="poll-view">
-        <div class="poll-view__title">
-            How old are you?
-        </div>
-        <div class="poll-view__inner">
-            <div class="poll-view__answers">
+        <div class="poll-view__title" v-html="poll.question"></div>
+        <div v-if="!result" class="poll-view__inner">
+            <div class="poll-view__help">
+                <span v-if="poll.multipleVotes">Choose many answers:</span>
+                <span v-else>Choose one answer:</span>
+            </div>
+            <div class="poll-view__votes">
                 <div v-for="(answer, index) in poll.answers" :key="answer.id" class="answer">
-                    <label class="w3checkbox">{{ answer.answer }}
-                        <input type="checkbox" v-model="poll.answers[index].voted" @change="validate(index)">
+                    <label class="checkbox">{{ answer.answer }}
+                        <input type="checkbox" v-model="poll.answers[index].voted" @change="multipleCheck(index)">
                         <span class="checkmark"></span>
                     </label>
                 </div>
             </div>
-            <div class="poll-view__vote">
+            <div class="poll-view__submit">
                 <button @click="vote">Vote</button>
+            </div>
+        </div>
+        <div class="poll-view__info" :class="{'success' : success === true, 'error' : success === false}" v-if="success !== null">
+            <div v-if="success === true">Voted</div>
+            <div v-if="success === false">Error</div>
+        </div>
+        <div v-if="result" class="poll-view__results">
+            <div class="result" v-for="(answer, index) in this.poll.answers" :key="index">
+                <div class="title">
+                    {{ answer.answer }}
+                    <span class="percent">{{ calculatePercent(answer.votes)}}% </span>
+                    <span class="votes">({{ answer.votes }} votes)</span>
+                </div>
+                <div class="bar">
+                    <div :style="{width: calculatePercent(answer.votes) + '%'}"></div>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
     name: "poll-view",
     props: {
-        previw: {
-            type: Boolean,
-            default: true
+        saveVoteUrl: {
+            type: String
+        },
+        getPollUrl: {
+            type: String
         }
     },
     data() {
         return {
             poll: {
-                question: "How old are you?",
+                id: 1,
+                question: "What is your favourite <strong>PHP</strong> framework?",
                 answers: [
-                    {id: 1, answer: "10-20", voted: false},
-                    {id: 2, answer: "21-30", voted: false},
-                    {id: 3, answer: "31-40", voted: false},
+                    {id: 1, answer: "Laravel", votes: 14021},
+                    {id: 2, answer: "Symfony", votes: 3210},
+                    {id: 3, answer: "Phalcon", votes: 3231},
+                    {id: 4, answer: "FuelPhp", votes: 2004},
+                    {id: 5, answer: "Zend Framework", votes: 3132},
+                    {id: 6, answer: "PHPixie", votes: 2131},
+                    {id: 7, answer: "CakePHP", votes: 1222}
                 ],
-                options: {
-                    multipleVotes: false   
-                }
-            }
+                multipleVotes: true
+            },
+            totalVotes: 0,
+            result: false,
+            success: null,
+            isValid: false,
+            dev: true,
         };
+    },
+    mounted() {
+        axios.get(this.getPollUrl)
+        .then((response) => {
+            this.poll = response
+        })
+        .catch((error) => {
+            console.log(error)
+        })
     },
     methods: {
         vote() {
-            // vote
+            this.validate()
+            // Dev only ------
+            if (this.dev && this.isValid) {
+                this.alert(true)
+                this.calculateTotalVotes();
+            } else {
+            // --------------
+                if (this.isValid) {
+                    axios.post(this.saveVoteUrl, {
+                        pollId: this.poll.id,
+                        votes: votes
+                    })
+                    .then((response) => {
+
+                        this.calculateTotalVotes()
+                        this.alert(true)
+                    })
+                    .catch((error) => {
+                        this.alert(false)
+                    });
+                } else {
+                    this.alert(false)
+                }
+            }
         },
-        validate(index) {
-            if (this.poll.options.multipleVotes == true) {
+        multipleCheck(index) {
+            if (this.poll.multipleVotes == true) {
                 return
             } else {
                 const nrOfVotes = this.poll.answers.filter(ans => ans.voted == true).length
@@ -56,101 +118,45 @@ export default {
                     this.poll.answers[index].voted = false;
                 }
             }
+        },
+        validate() {
+            const votes = this.poll.answers.filter(answer => answer.voted == true).map(answer => answer.id).length
+            if (votes > 0) {
+                if (votes > 1) {
+                    if (this.poll.multipleVotes == true) {
+                        this.isValid = true
+                    } else {
+                        this.isValid = false;
+                    }
+                } else {
+                    this.isValid = true
+                }
+            } else {
+                this.isValid = false
+            }
+        },
+        alert(success) {
+            this.success = success
+            setTimeout(() => {
+                this.success = null
+                this.result = success
+            }, 1500)
+        },
+        calculatePercent(votes) {
+            return parseInt(10000 * votes / this.totalVotes) / 100;
+        },
+        calculateTotalVotes() {
+            this.poll.answers.forEach((answer) => {
+                this.totalVotes += answer.votes
+                if (answer.voted) {
+                    this.totalVotes += 1
+                }
+            })
         }
     }
 };
 </script>
 
 <style lang="scss">
-$primary: #90ee90;
-// $primary: #a390ee;
-
-.poll-view {
-    font-family: Arial, Helvetica, sans-serif;
-    border-top: 6px solid $primary;
-    max-width: 500px;
-    margin: auto;
-    background-color: #fff;
-    &__title {
-        text-align: center;
-        font-size: 32px;
-        font-weight: 900;
-    }
-    &__inner {
-        padding: 16px;
-    }
-    &__answers {
-        .answer {
-            padding-bottom: 5px;
-            display: block;
-            position: relative;
-            background-color: #fff;
-        }
-    }
-    &__vote {
-        text-align: center;
-        button {
-            color: #fff;
-            background-color: $primary;
-            border: 1px solid lighten($primary, 15%);
-            padding: 10px 16px;
-            font-size: 30px;
-            transition: background-color 0.2s ease-in-out;
-            &:hover {
-                cursor: pointer;
-                background-color: darken($primary, 15%);
-            }
-        }
-    }
-    .w3checkbox {
-        display: block;
-        position: relative;
-        padding-left: 35px;
-        margin-bottom: 12px;
-        cursor: pointer;
-        font-size: 22px;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        input {
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-        }
-        .checkmark {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 25px;
-            width: 25px;
-            background-color: #eee;
-            &:after {
-                content: "";
-                position: absolute;
-                display: none;
-                left: 9px;
-                top: 5px;
-                width: 5px;
-                height: 10px;
-                border: solid white;
-                border-width: 0 3px 3px 0;
-                -webkit-transform: rotate(45deg);
-                -ms-transform: rotate(45deg);
-                transform: rotate(45deg);
-            }
-        }
-        &:hover {
-            input ~ .checkmark {
-                background-color: #ccc;
-            }
-        }
-        input:checked ~ .checkmark {
-            background-color: $primary;
-            &:after {
-                display: block;
-            }
-        }
-    }
-}
+@import "./poll.scss";
 </style>
