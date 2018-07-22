@@ -87,6 +87,8 @@ Define `vue2-poll` component markup inside your custom component:
 | saveVoteUrl | This is the endpoint where your server will save the vote for the current poll | URL (string) | POST | required | - |
 | getPollUrl | This is the endpoint from where your server will return the poll | URL (string) | GET | required | - |
 
+### Database schema example
+![Database schema](https://raw.githubusercontent.com/gabistanciu/vue2-poll/master/demo/schema.png "Database schema")
 
 ### LICENSE
 
