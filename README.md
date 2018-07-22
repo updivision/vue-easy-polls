@@ -17,38 +17,6 @@ Using npm:
 $ npm install vue2-poll
 ```
 
-Using cdn:
-
-```html
-<script src="https://raw.githubusercontent.com/gabistanciu/vue2-poll/master/dist/vue2-poll-plugin.js"></script>
-```
-
-### Example (NPM)
-
-Define `vue2-poll` component markup inside your custom component:
-
-```html
-<template>
-    <div>
-        <poll-creator savePollUrl="post-poll-url" />
-        <hr>
-        <poll-view getPollUrl="get-poll-url" saveVoteUrl="post-save-url"/>
-    </div>
-</template>
-
-<script> 
-    
-    import {PollView, PollCreator} from 'vue2-poll'
-    
-    export default {        
-        components: {
-            PollView,
-            PollCreator
-        }
-    }
-</script>
-```
-
 ### Example (CDN)
 
 ```html
