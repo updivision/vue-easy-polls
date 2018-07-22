@@ -3,7 +3,7 @@
 > A Vuejs component for voting. Create polls -> Vote.
 
 ### Demo
-See live demo [here](). todo
+See live demo [here](https://gabistanciu.github.io/vue2-poll/)
 
 ## Prerequisites
 - [Vue.js 2](https://vuejs.org/)
@@ -20,8 +20,7 @@ $ npm install vue2-poll
 Using cdn:
 
 ```html
-<!-- TODO -->
-<script src="something"></script>
+<script src="https://raw.githubusercontent.com/gabistanciu/vue2-poll/master/dist/vue2-poll-plugin.js"></script>
 ```
 
 ### Example (NPM)
@@ -60,7 +59,7 @@ Define `vue2-poll` component markup inside your custom component:
         <poll-view getPollUrl="get-poll-url" saveVoteUrl="post-save-url"/>
     </div>
     <!-- Getting Vue2Poll from cdn -->
-    <script src="todo"></script>
+    <script src="https://raw.githubusercontent.com/gabistanciu/vue2-poll/master/dist/vue2-poll-plugin.js"></script>
     
     <script> 
 
