@@ -3,7 +3,7 @@
 > A Vuejs component for voting. Create polls -> Vote.
 
 ### Demo
-See live demo [here]().
+See live demo [here](). todo
 
 ## Prerequisites
 - [Vue.js 2](https://vuejs.org/)
@@ -31,36 +31,20 @@ Define `vue2-poll` component markup inside your custom component:
 ```html
 <template>
     <div>
-        <vue-poll v-bind="options" @addvote="addVote"/>
+        <poll-creator savePollUrl="post-poll-url" />
+        <hr>
+        <poll-view getPollUrl="get-poll-url" saveVoteUrl="post-save-url"/>
     </div>
 </template>
 
 <script> 
     
-    import Vue2Poll from 'vue2-poll'
+    import {PollView, PollCreator} from 'vue2-poll'
     
     export default {        
-        data() {
-            return {
-                poll: {
-                    question: "What is your favourite <strong>PHP</strong> framework?",
-                    answers: [
-                        {id: 1, answer: "Laravel", votes: 34021, voted: false},
-                        {id: 2, answer: "Symfony", votes: 3210, voted: false},
-                        {id: 3, answer: "Phalcon", votes: 321, voted: false},
-                        {id: 4, answer: "FuelPhp", votes: 200, voted: false},
-                        {id: 5, answer: "Zend Framework", votes: 31, voted: false},
-                        {id: 6, answer: "PHPixie", votes: 21, voted: false},
-                        {id: 7, answer: "CakePHP", votes: 12, voted: false}
-                    ],
-                    options: {
-                        multipleVotes: false   
-                    }
-                }
-            }
-        },
         components: {
-            Vue2Poll
+            PollView,
+            PollCreator
         }
     }
 </script>
@@ -71,55 +55,37 @@ Define `vue2-poll` component markup inside your custom component:
 ```html
 <body>
     <div id="app">
-        <vue2-poll/>
+        <poll-creator savePollUrl="post-poll-url" />
+        <hr>
+        <poll-view getPollUrl="get-poll-url" saveVoteUrl="post-save-url"/>
     </div>
-
-    <script src="something"></script>
+    <!-- Getting Vue2Poll from cdn -->
+    <script src="todo"></script>
+    
     <script> 
 
         Vue.use(Vue2Poll);
 
         new Vue({
             el: '#app'
-            data: function() {
-                return {
-                    poll: {
-                        question: "What is your favourite <strong>PHP</strong> framework?",
-                        answers: [
-                            {id: 1, answer: "Laravel", votes: 34021, voted: false},
-                            {id: 2, answer: "Symfony", votes: 3210, voted: false},
-                            {id: 3, answer: "Phalcon", votes: 321, voted: false},
-                            {id: 4, answer: "FuelPhp", votes: 200, voted: false},
-                            {id: 5, answer: "Zend Framework", votes: 31, voted: false},
-                            {id: 6, answer: "PHPixie", votes: 21, voted: false},
-                            {id: 7, answer: "CakePHP", votes: 12, voted: false}
-                        ],
-                        options: {
-                            multipleVotes: false   
-                        }
-                    }
-                }
-            },
-            methods: {
-            }
         });
     </script>
 </body>
 ```
 
-### Props
+# Props
 #### PollCreate.vue
 
-| Attribute | Description | Accepted values | Required | Default |
-| --------- | ----------- | --------------- | -------- | ------- |
-| savePollUrl | This is the endpoint where your server will save the current poll | URL (string) | required | - |
+| Attribute | Description | Accepted values | HTTP verb | Required | Default |
+| --------- | ----------- | --------------- | --------- | -------- | ------- |
+| savePollUrl | This is the endpoint where your server will save the current poll | URL (string) | POST | required | - |
 
 #### PollView.vue
 
-| Attribute | Description | Accepted values | Required | Default |
-| --------- | ----------- | --------------- | -------- | ------- |
-| saveVoteUrl | This is the endpoint where your server will save the vote for the current poll | URL (string) | required | - |
-| getPollUrl | This is the endpoint from where your server will return the poll | URL (string) | required | - |
+| Attribute | Description | Accepted values | HTTP verb | Required | Default |
+| --------- | ----------- | --------------- | --------- | -------- | :-----: |
+| saveVoteUrl | This is the endpoint where your server will save the vote for the current poll | URL (string) | POST | required | - |
+| getPollUrl | This is the endpoint from where your server will return the poll | URL (string) | GET | required | - |
 
 
 ### LICENSE
