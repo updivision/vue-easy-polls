@@ -38,6 +38,10 @@ export default {
     props: {
         savePollUrl: {
             type: String
+        },
+        dev: {
+            type: Boolean,
+            default: false
         }
     },
     data() {
@@ -53,8 +57,7 @@ export default {
                 multipleVotes: false
             },
             isValid: false,
-            success: null,
-            dev: true
+            success: null
         };
     },
     mounted () {

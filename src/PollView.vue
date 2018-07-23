@@ -48,6 +48,10 @@ export default {
         },
         getPollUrl: {
             type: String
+        },
+        dev: {
+            type: Boolean,
+            default: false
         }
     },
     data() {
@@ -69,8 +73,7 @@ export default {
             totalVotes: 0,
             result: false,
             success: null,
-            isValid: false,
-            dev: true,
+            isValid: false
         };
     },
     mounted() {
