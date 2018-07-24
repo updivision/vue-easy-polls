@@ -1,9 +1,9 @@
-# Vue2-poll
+# vue-easy-polls
 
-> A Vuejs component for voting. Create polls -> Vote.
+> A Vue.js component for creating polls, voting and showing results. It’s easy to implement and easy to customize.
 
 ### Demo
-See live demo [here](https://gabistanciu.github.io/vue2-poll/)
+See live demo [here](todo)
 
 ## Prerequisites
 - [Vue.js 2](https://vuejs.org/)
@@ -14,33 +14,34 @@ See live demo [here](https://gabistanciu.github.io/vue2-poll/)
 Using npm:
 
 ```bash
-$ npm install vue2-poll
+$ npm install vue-easy-polls
 ```
 
-### Example (CDN)
+### Example (NPM)
 
-```html
-<body>
-    <div id="app">
-        <poll-creator savePollUrl="post-poll-url" />
-        <hr>
-        <poll-view getPollUrl="get-poll-url" saveVoteUrl="post-save-url"/>
-    </div>
-    <!-- Getting Vue2Poll from cdn -->
-    <script src="https://raw.githubusercontent.com/gabistanciu/vue2-poll/master/dist/vue2-poll-plugin.js"></script>
-    
-    <script> 
+```vue
+<template>
+  <div id="app">
+    <poll-creator savePollUrl="post-poll-url" />
+    <hr>
+    <poll-view getPollUrl="get-poll-url" saveVoteUrl="post-save-url"/>
+  </div>
+</template>
 
-        Vue.use(Vue2Poll);
+<script>
+import {PollView, PollCreator} from 'vue-easy-polls'
 
-        new Vue({
-            el: '#app'
-        });
-    </script>
-</body>
+export default {
+    name: 'app',
+    components: {
+        PollCreator,
+        PollView
+    }
+}
+</script>
 ```
 
-# Props
+## Poll Attributes
 #### PollCreate.vue
 
 | Attribute | Description | Accepted values | HTTP verb | Required | Default |
@@ -55,30 +56,14 @@ $ npm install vue2-poll
 | getPollUrl | This is the endpoint from where your server will return the poll | URL (string) | GET | required | - |
 
 ### Database schema example
-![Database schema](https://raw.githubusercontent.com/gabistanciu/vue2-poll/master/demo/schema.png "Database schema")
+![Database schema](https://raw.githubusercontent.com/updivision/vue-easy-poll/master/demo/schema.png "Database schema")
+
+### Screenshots
+![vue-easy-polls](https://raw.githubusercontent.com/gabistanciu/vue2-poll/master/demo/schema.png "vue-easy-polls")
+![vue-easy-polls](https://raw.githubusercontent.com/gabistanciu/vue2-poll/master/demo/schema.png "vue-easy-polls")
+![vue-easy-polls](https://raw.githubusercontent.com/gabistanciu/vue2-poll/master/demo/schema.png "vue-easy-polls")
 
 ### LICENSE
 
 ---
-MIT License
-
-Copyright (c) 2018 Stanciu Gabriel
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
+[MIT License](todo)
