@@ -102,6 +102,4 @@ $poll-secondary: yellow;
 - ##### [Stanciu Gabriel](https://github.com/gabistanciu)
 
 ## LICENSE
-
----
 [MIT License](todo)
