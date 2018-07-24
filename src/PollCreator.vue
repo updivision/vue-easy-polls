@@ -13,19 +13,22 @@
                     <span class="delete" @click="deleteInput(index)">delete</span>
                 </div>
             </div>
+            <div class="poll-view__options">
+                <label class="checkbox">Allow multiple votes
+                    <input v-model="poll.multipleVotes" type="checkbox" checked="checked">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="poll-view__submit">
+                <button @click="createPoll">Create</button>
+            </div>
+            <div class="poll-view__info" :class="{'success' : success === true, 'error' : success === false}" v-if="success !== null">
+                <div v-if="success === true">Created</div>
+                <div v-if="success === false">Error</div>
+            </div>
         </div>
-        <div class="poll-view__options">
-            <label class="checkbox">Allow multiple votes
-                <input v-model="poll.multipleVotes" type="checkbox" checked="checked">
-                <span class="checkmark"></span>
-            </label>
-        </div>
-        <div class="poll-view__submit">
-            <button @click="createPoll">Create</button>
-        </div>
-        <div class="poll-view__info" :class="{'success' : success === true, 'error' : success === false}" v-if="success !== null">
-            <div v-if="success === true">Created</div>
-            <div v-if="success === false">Error</div>
+        <div v-if="demo" class="poll-view__footer">
+            Made with &hearts; by <a href="https://updivision.com/">updivision.com</a>
         </div>
     </div>
 </template>
@@ -39,7 +42,7 @@ export default {
         savePollUrl: {
             type: String
         },
-        dev: {
+        demo: {
             type: Boolean,
             default: false
         }
@@ -79,12 +82,12 @@ export default {
         createPoll() {
             this.validate();
 
-            // Develop only -----TO REMOVE--------------
-            if (this.dev && this.isValid) {
+            // demoelop only -----TO REMOVE--------------
+            if (this.demo && this.isValid) {
                 this.alert(true)
                 setTimeout(() => {this.resetPoll()}, 1500)
             // --------------------------------
-            } else if (this.dev && !this.isValid) {
+            } else if (this.demo && !this.isValid) {
                 this.alert(false)
                 setTimeout(() => {this.resetPoll()}, 1500)
             } else {
@@ -135,6 +138,6 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import "./poll.scss";
+<style>
+    @import "./assets/vue-easy-polls.scss";
 </style>

@@ -1,30 +1,35 @@
 {
-  "name": "vue2-poll",
-  "version": "1.1.5",
-  "description": "A Vuejs component. Create polls. Vote. Edit.",
-  "main": "dist/vue2-poll.js",
+  "name": "@updivision/vue-easy-polls",
+  "version": "1.0.0",
+  "description": "A Vue.js component for creating polls, voting and showing results. It’s easy to implement and easy to customize.",
+  "main": "dist/vue-easy-polls.js",
   "scripts": {
     "build": "rimraf ./dist && webpack --config ./webpack.config.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gabistanciu/vue2-poll.git"
+    "url": "git+https://github.com/updivision/vue-easy-polls.git"
   },
   "keywords": [
     "vue.js",
-    "vue2-poll.js",
+    "vue-easy-polls",
     "vue",
     "votes",
     "vote",
     "poll",
-    "opinion polling"
+    "polls",
+    "opinion polling",
+    "vue voting component",
+    "vue polling component",
+    "opinion voting",
+    "creating polls vue component"
   ],
-  "author": "Gabi Stanciu",
+  "author": "UPDIVISION",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gabistanciu/vue2-poll/issues"
+    "url": "https://github.com/updivision/vue-easy-polls/issues"
   },
-  "homepage": "https://github.com/gabistanciu/vue2-poll#readme",
+  "homepage": "https://github.com/updivision/vue-easy-polls#readme",
   "dependencies": {
     "axios": "^0.18.0"
   },

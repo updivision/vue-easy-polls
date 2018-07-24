@@ -17,10 +17,10 @@
             <div class="poll-view__submit">
                 <button @click="vote">Vote</button>
             </div>
-        </div>
-        <div class="poll-view__info" :class="{'success' : success === true, 'error' : success === false}" v-if="success !== null">
-            <div v-if="success === true">Voted</div>
-            <div v-if="success === false">Error</div>
+            <div class="poll-view__info" :class="{'success' : success === true, 'error' : success === false}" v-if="success !== null">
+                <div v-if="success === true">Voted</div>
+                <div v-if="success === false">Error</div>
+            </div>
         </div>
         <div v-if="result" class="poll-view__results">
             <div class="result" v-for="(answer, index) in this.poll.answers" :key="index">
@@ -33,6 +33,10 @@
                     <div :style="{width: calculatePercent(answer.votes) + '%'}"></div>
                 </div>
             </div>
+        </div>
+        <div v-if="demo" class="poll-view__footer">
+            Made with &hearts; by
+            <a href="https://updivision.com/">updivision.com</a>
         </div>
     </div>
 </template>
@@ -49,7 +53,7 @@ export default {
         getPollUrl: {
             type: String
         },
-        dev: {
+        demo: {
             type: Boolean,
             default: false
         }
@@ -88,8 +92,8 @@ export default {
     methods: {
         vote() {
             this.validate()
-            // Dev only ------
-            if (this.dev && this.isValid) {
+            // demo only ------
+            if (this.demo && this.isValid) {
                 this.alert(true)
                 this.calculateTotalVotes();
             } else {
@@ -160,6 +164,6 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import "./poll.scss";
+<style>
+    @import "./assets/vue-easy-polls.scss";
 </style>
