@@ -41,6 +41,39 @@ export default {
 </script>
 ```
 
+## Customize
+
+```vue
+<template>
+  <div id="app">
+    <poll-creator savePollUrl="post-poll-url" />
+    <hr>
+    <poll-view getPollUrl="get-poll-url" saveVoteUrl="post-save-url"/>
+  </div>
+</template>
+
+<script>
+import {PollView, PollCreator} from 'vue-easy-polls'
+
+export default {
+    name: 'app',
+    components: {
+        PollCreator,
+        PollView
+    }
+}
+</script>
+
+<stlye>
+...
+$poll-primary: red;
+$poll-secondary: yellow;
+@import "~/vue-easy-polls/src/assets/poll.scss"
+...
+</style>
+
+```
+
 ## Poll Attributes
 #### PollCreate.vue
 
@@ -55,15 +88,20 @@ export default {
 | saveVoteUrl | This is the endpoint where your server will save the vote for the current poll | URL (string) | POST | required | - |
 | getPollUrl | This is the endpoint from where your server will return the poll | URL (string) | GET | required | - |
 
-### Database schema example
-![Database schema](https://raw.githubusercontent.com/updivision/vue-easy-poll/master/demo/schema.png "Database schema")
+## Database schema example
+![Database schema](https://github.com/updivision/vue-easy-polls/blob/master/demo/schema.png?raw=true "Database schema")
 
-### Screenshots
-![vue-easy-polls](https://raw.githubusercontent.com/gabistanciu/vue2-poll/master/demo/schema.png "vue-easy-polls")
-![vue-easy-polls](https://raw.githubusercontent.com/gabistanciu/vue2-poll/master/demo/schema.png "vue-easy-polls")
-![vue-easy-polls](https://raw.githubusercontent.com/gabistanciu/vue2-poll/master/demo/schema.png "vue-easy-polls")
+## Screenshots
+![vue-easy-polls](https://github.com/updivision/vue-easy-polls/blob/master/demo/vue-easy-polls.png?raw=true "vue-easy-polls")
+---
+![vue-easy-polls](https://github.com/updivision/vue-easy-polls/blob/master/demo/vue-easy-polls-2.png?raw=true "vue-easy-polls")
+---
+![vue-easy-polls](https://github.com/updivision/vue-easy-polls/blob/master/demo/vue-easy-polls-3.png?raw=true "vue-easy-polls")
 
-### LICENSE
+## Contributors
+- ##### [Stanciu Gabriel](https://github.com/gabistanciu)
+
+## LICENSE
 
 ---
 [MIT License](todo)
