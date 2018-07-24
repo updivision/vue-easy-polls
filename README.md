@@ -14,7 +14,7 @@ See live demo [here](https://updivision.github.io/vue-easy-polls/)
 Using npm:
 
 ```bash
-$ npm install vue-easy-polls
+$ npm i @updivision/vue-easy-polls
 ```
 
 ### Example (NPM)
