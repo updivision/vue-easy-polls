@@ -3,7 +3,7 @@
 > A Vue.js component for creating polls, voting and showing results. It’s easy to implement and easy to customize.
 
 ### Demo
-See live demo [here](todo)
+See live demo [here](https://updivision.github.io/vue-easy-polls/)
 
 ## Prerequisites
 - [Vue.js 2](https://vuejs.org/)
@@ -102,4 +102,4 @@ $poll-secondary: yellow;
 - ##### [Stanciu Gabriel](https://github.com/gabistanciu)
 
 ## LICENSE
-[MIT License](todo)
+[MIT License](https://github.com/updivision/vue-easy-polls/blob/master/LICENSE)
