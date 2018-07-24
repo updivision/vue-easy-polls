@@ -29,7 +29,7 @@ $ npm i @updivision/vue-easy-polls
 </template>
 
 <script>
-import {PollView, PollCreator} from 'vue-easy-polls'
+import {PollView, PollCreator} from '@updivision/vue-easy-polls'
 
 export default {
     name: 'app',
@@ -53,7 +53,7 @@ export default {
 </template>
 
 <script>
-import {PollView, PollCreator} from 'vue-easy-polls'
+import {PollView, PollCreator} from '@updivision/vue-easy-polls'
 
 export default {
     name: 'app',
@@ -64,12 +64,12 @@ export default {
 }
 </script>
 
-<stlye>
-...
+<style lang="scss">
+//...
 $poll-primary: red;
 $poll-secondary: yellow;
-@import "~/vue-easy-polls/src/assets/poll.scss"
-...
+@import "@updivision/vue-easy-polls/src/assets/poll.scss";
+//...
 </style>
 
 ```

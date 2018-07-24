@@ -26,7 +26,7 @@
   background-color: #fff;
   position: relative;
   transition: all 0.2s ease-in-out;
-  border-top: 6px solid $primary;
+  border-top: 6px solid $poll-primary;
   &__title {
       text-align: center;
       font-size: 32px;
@@ -55,7 +55,7 @@
           transition: border 0.2s ease-in-out;
           &:focus {
               outline: none;
-              border: 2px solid darken($primary, 10%);
+              border: 2px solid darken($poll-primary, 10%);
           }
       }
   }
@@ -80,7 +80,7 @@
               bottom: 10px;
               right: 0;
               background-color: #fff;
-              color: $error;
+              color: $poll-secondary;
               font-weight: 500;
               line-height: 14px;
               font-size: 14px;
@@ -102,7 +102,7 @@
               transition: border 0.2s ease-in-out;
               &:focus {
                   outline: none;
-                  border-bottom: 3px solid $primary;
+                  border-bottom: 3px solid $poll-primary;
               }
           }
       }
@@ -131,7 +131,7 @@
               left: 0;
               top: 0;
               z-index: 99;
-              background-color: $primary;
+              background-color: $poll-primary;
               bottom: 0;
           }
       }
@@ -141,14 +141,14 @@
       padding: 16px 0px;
       button {
           color: #fff;
-          background-color: $primary;
-          border: 1px solid lighten($primary, 15%);
+          background-color: $poll-primary;
+          border: 1px solid lighten($poll-primary, 15%);
           padding: 10px 16px;
           font-size: 30px;
           transition: background-color 0.2s ease-in-out;
           &:hover {
               cursor: pointer;
-              background-color: darken($primary, 15%);
+              background-color: darken($poll-primary, 15%);
           }
       }
   }
@@ -162,15 +162,15 @@
       animation-name: shownhide;
       animation-duration: 3s;
       &.success {
-          background-color: lighten($primary, 20%);
+          background-color: lighten($poll-primary, 20%);
           div {
-              color: darken($primary, 30%);
+              color: darken($poll-primary, 30%);
           }
       }
       &.error {
-          background-color: lighten($error, 20%);
+          background-color: lighten($poll-secondary, 20%);
           div {
-              color: darken($error, 30%);
+              color: darken($poll-secondary, 30%);
           }
       }
       div {
@@ -242,7 +242,7 @@
           }
       }
       input:checked ~ .checkmark {
-          background-color: $primary;
+          background-color: $poll-primary;
           &:after {
               display: block;
           }
