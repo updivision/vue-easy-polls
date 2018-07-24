@@ -99,7 +99,7 @@ $poll-secondary: yellow;
 ![vue-easy-polls](https://github.com/updivision/vue-easy-polls/blob/master/demo/vue-easy-polls-3.png?raw=true "vue-easy-polls")
 
 ## Contributors
-- ##### [Stanciu Gabriel](https://github.com/gabistanciu)
+- [Stanciu Gabriel](https://github.com/gabistanciu)
 
 ## LICENSE
 [MIT License](https://github.com/updivision/vue-easy-polls/blob/master/LICENSE)
