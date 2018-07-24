@@ -93,9 +93,9 @@ $poll-secondary: yellow;
 
 ## Screenshots
 ![vue-easy-polls](https://github.com/updivision/vue-easy-polls/blob/master/demo/vue-easy-polls.png?raw=true "vue-easy-polls")
----
+
 ![vue-easy-polls](https://github.com/updivision/vue-easy-polls/blob/master/demo/vue-easy-polls-2.png?raw=true "vue-easy-polls")
----
+
 ![vue-easy-polls](https://github.com/updivision/vue-easy-polls/blob/master/demo/vue-easy-polls-3.png?raw=true "vue-easy-polls")
 
 ## Contributors
