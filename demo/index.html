@@ -6,7 +6,7 @@
     <title>VueEasyPolls</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="../dist/vue-easy-polls-plugin.js"></script>
     <style>
         body {
@@ -21,13 +21,10 @@
         <poll-view :demo="true"></poll-view>
     </div>
     <script>
-
     Vue.use(VueEasyPolls);
-    
+
     new Vue({
         el: '#app',
-        data: function() {
-        },
     })
     </script>
 </body>
