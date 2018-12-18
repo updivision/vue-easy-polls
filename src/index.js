@@ -6,7 +6,7 @@ const Poll = {
   PollCreator
 }
 
-export default Poll 
+export default Poll
 
 export {
   Poll,
