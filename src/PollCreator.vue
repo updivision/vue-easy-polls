@@ -94,6 +94,8 @@ export default {
                 if (this.isValid) {
                     axios.post(this.savePollUrl, {
                         poll: this.poll
+                    }, {
+                        maxContentLength: 2000
                     })
                     .then((response) => {
                         this.alert(true)
@@ -101,6 +103,7 @@ export default {
                     })
                     .catch((error) => {
                         this.alert(false)
+                        error.request.res.destroy()
                     });
                 } else {
                     this.alert(false)

@@ -81,12 +81,14 @@ export default {
         };
     },
     mounted() {
-        axios.get(this.getPollUrl)
-        .then((response) => {
+        axios.get(this.getPollUrl, {
+            maxContentLength: 2000
+        }).then((response) => {
             this.poll = response
         })
         .catch((error) => {
             console.log(error)
+            error.request.res.destroy()
         })
     },
     methods: {
@@ -102,6 +104,8 @@ export default {
                     axios.post(this.saveVoteUrl, {
                         pollId: this.poll.id,
                         votes: votes
+                    }, {
+                        maxContentLength: 2000
                     })
                     .then((response) => {
 
@@ -110,6 +114,7 @@ export default {
                     })
                     .catch((error) => {
                         this.alert(false)
+                        error.request.res.destroy()
                     });
                 } else {
                     this.alert(false)
